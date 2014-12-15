@@ -17,10 +17,10 @@
 
   <header class="Banner">
     <h1 class="Banner-title">
-      <a href="/">Embed API Demos</a>
-      <em>Pure HTML Dashboards</em>
+      <a href="/">Phila.gov Analytics v0.0.1</a>
+      <em>Test Dashboards</em>
     </h1>
-    <ga-auth clientid="623325626209-j1jm9d78ge0v4uf8b9cor31qsirungrq.apps.googleusercontent.com"></gauth>
+    <ga-auth clientid="1045492784533-ql9o89eua66i30ir48m9dr54gsu4psgn.apps.googleusercontent.com"></gauth>
   </header>
 
   <ga-dashboard>
@@ -28,17 +28,18 @@
     <section id="controls">
       <ga-viewpicker></ga-viewpicker>
       <ga-datepicker
-        startDate="30daysAgo"
-        endDate="14daysAgo">
+        startDate="365daysAgo"
+        endDate="1daysAgo">
       </ga-datepicker>
     </section>
 
     <section id="charts">
-      <ga-chart
-        title="Timeline"
-        type="LINE"
+      <ga-chart          
+        title="Sessions per Month"
+        type="COLUMN"
         metrics="ga:sessions"
-        dimensions="ga:date">
+        dimensions="ga:nthMonth"
+        fields=rows,columnHeaders>
       </ga-chart>
 
       <ga-chart
@@ -47,6 +48,15 @@
         metrics="ga:sessions"
         dimensions="ga:country">
       </ga-chart>
+        
+<!--
+      <ga-chart
+        title="Sessions (local)"
+        type="GEO"
+        metrics="ga:sessions"
+        dimensions="ga:city">
+      </ga-chart>
+-->
 
       <ga-chart
         title="Top Browsers"
@@ -54,7 +64,7 @@
         metrics="ga:sessions"
         dimensions="ga:browser"
         sort="-ga:sessions"
-        maxResults="5">
+        maxResults="7">
       </ga-chart>
 
       <ga-chart
@@ -63,8 +73,33 @@
         metrics="ga:sessions"
         dimensions="ga:pagePath"
         sort="-ga:sessions"
-        maxResults="8">
+        maxResults="10">
       </ga-chart>
+      
+      <ga-chart
+        title="Mobile Devices"
+        type="TABLE"
+        metrics="ga:sessions"
+        dimensions="ga:pagePath"
+        sort="-ga:sessions"
+        maxResults="10">
+      </ga-chart>
+          
+      <ga-chart
+        title="OS / Hits"
+        type="COLUMN"
+        metrics="ga:hits"
+        dimensions="ga:operatingSystem"
+        sort="-ga:hits"
+        maxResults="5">
+      </ga-chart>    
+      <ga-chart
+        title="Medium"
+        type="PIE"
+        metrics="ga:sessions"
+        dimensions="ga:medium"
+        maxResults="10">
+      </ga-chart>        
     </section>
 
   </ga-dashboard>
@@ -72,7 +107,7 @@
 <footer class="SourceLink">
   <a
   href="https://github.com/googleanalytics/embed-api-demos/blob/master/site/6-pure-html-dashboards.html">
-  View source on Github</a>
+  LSA updated 12.12.14 </a>
   &nbsp;&#8594;
 </footer>
 
