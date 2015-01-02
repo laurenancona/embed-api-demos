@@ -228,9 +228,9 @@
         'ids': ids,
         'dimensions': 'ga:date,ga:nthDay',
         'metrics': 'ga:sessions',
-        'start-date': moment(now).subtract('day', 1).day(0).subtract('week', 1)
+        'start-date': moment(now).subtract(1, 'day').day(0).subtract(1, 'week')
             .format('YYYY-MM-DD'),
-        'end-date': moment(now).subtract('day', 1).day(6).subtract('week', 1)
+        'end-date': moment(now).subtract(1, 'day').day(6).subtract(1, 'week')
             .format('YYYY-MM-DD')
       });
 
@@ -289,21 +289,23 @@
      */
     function drawYear(ids) {
 
-        var thisYear = query({
+      var thisYear = query({
         'ids': ids,
         'dimensions': 'ga:month,ga:nthMonth',
         'metrics': 'ga:sessions',
-        'start-date': '2014-01-01',
-        'end-date': '2014-12-31',
+        'start-date': moment(now).date(1).month(0).format('YYYY-MM-DD'),
+        'end-date': moment(now).format('YYYY-MM-DD')
       });
 
       var lastYear = query({
         'ids': ids,
         'dimensions': 'ga:month,ga:nthMonth',
         'metrics': 'ga:sessions',
-        'start-date': '2013-01-01',
-        'end-date': '2013-12-31',
-      });
+        'start-date': moment(now).subtract(1, 'year').date(1).month(0)
+              .format('YYYY-MM-DD'),
+        'end-date': moment(now).date(1).month(0).subtract(1, 'day')
+              .format('YYYY-MM-DD')
+  });
 
       Promise.all([thisYear, lastYear]).then(function(results) {
         var data1 = results[0].rows.map(function(row) { return +row[2]; });
