@@ -288,6 +288,9 @@ function drawWeek(ids) {
  */
 function drawYear(ids) {
 
+// Adjust `now` to experiment with different days, for testing only...
+  var now = moment(); // .subtract(3, 'day');
+
   var thisYear = query({
     'ids': ids,  
     'dimensions': 'ga:month,ga:nthMonth',
